@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AR Quiz Trainer – AI Object Scanner</title>
+
+    <!-- ML Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.18.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.0"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>AR Quiz Trainer</h1>
+      <p class="subtitle">Scan Objects-Learn Smarter</p>
+    </header>
+
+    <main>
+      <!-- HOME SCREEN -->
+      <section id="home-screen" class="screen">
+        <h2>Home</h2>
+        <p>
+          Scan ANY lab object (real or phone image). AI detects it and generates
+          a safety quiz with scoring and answer review.
+        </p>
+
+        <div class="btn-row">
+          <button id="btn-scan">Scan Object</button>
+          <button id="btn-library">Library</button>
+          <button id="btn-help">Help</button>
+        </div>
+      </section>
+
+      <!-- SCAN SCREEN -->
+      <section id="scan-screen" class="screen hidden">
+        <h2>Scan Lab Object</h2>
+
+        <video id="cameraVideo" autoplay playsinline></video>
+        <canvas id="cameraCanvas" class="hidden"></canvas>
+
+        <p id="scan-status">Camera OFF. Click Start Camera.</p>
+        <p id="prediction-text" class="prediction"></p>
+
+        <div class="btn-row">
+          <button id="btn-start-camera">Start Camera</button>
+          <button id="btn-capture">Capture & Detect</button>
+          <button id="btn-stop-camera">Stop Camera</button>
+          <button id="btn-scan-back">Back</button>
+        </div>
+      </section>
+
+      <!-- QUIZ SCREEN -->
+      <section id="quiz-screen" class="screen hidden">
+        <h2 id="quiz-title">Quiz</h2>
+
+        <div id="question-box">
+          <p id="question-text"></p>
+          <div id="options"></div>
+        </div>
+
+        <p id="progress-text"></p>
+
+        <div class="btn-row">
+          <button id="btn-prev">Previous</button>
+          <button id="btn-next">Next</button>
+          <button id="btn-submit" class="hidden">Submit</button>
+        </div>
+
+        <div class="btn-row">
+          <button id="btn-save-question">Save Question</button>
+          <button id="btn-quiz-back">Back</button>
+          <button id="btn-quiz-exit">Exit</button>
+        </div>
+      </section>
+
+      <!-- SCORE SCREEN -->
+      <section id="score-screen" class="screen hidden">
+        <h2>Your Score</h2>
+        <p id="score-display"></p>
+        <p id="score-stats" class="muted"></p>
+
+        <div class="btn-row">
+          <button id="btn-view-answers">View Answers</button>
+        </div>
+
+        <div class="btn-row">
+          <button id="btn-score-back">Back</button>
+          <button id="btn-score-exit">Exit</button>
+        </div>
+      </section>
+
+      <!-- ANSWER SCREEN (Correct / Wrong / Save) -->
+      <section id="answer-screen" class="screen hidden">
+        <h2>Answer Screen</h2>
+
+        <div class="btn-row" id="answer-filter-buttons">
+          <button id="btn-show-all">All</button>
+          <button id="btn-show-correct">Correct Answers</button>
+          <button id="btn-show-wrong">Wrong Answers</button>
+        </div>
+
+        <div id="answers-list"></div>
+
+        <div class="btn-row">
+          <button id="btn-save-wrong">Save Wrong Questions</button>
+        </div>
+
+        <div class="btn-row">
+          <button id="btn-answer-back">Back</button>
+          <button id="btn-answer-exit">Exit</button>
+        </div>
+      </section>
+
+      <!-- LIBRARY SCREEN (Favourite + Recently Scanned) -->
+      <section id="library-screen" class="screen hidden">
+        <h2>Library Screen</h2>
+
+        <h3>Favourites</h3>
+        <p class="subtitle">Saved Questions</p>
+        <ul id="fav-list"></ul>
+        <div class="btn-row">
+          <button id="btn-clear-fav">Clear All Favourites</button>
+        </div>
+
+        <h3>Recently Scanned Objects</h3>
+        <ul id="recent-list"></ul>
+        <div class="btn-row">
+          <button id="btn-clear-recent">Clear All Recent</button>
+        </div>
+
+        <div class="btn-row">
+          <button id="btn-library-back">Back</button>
+        </div>
+      </section>
+
+      <!-- HELP SCREEN (Details + Instructions + Back) -->
+      <section id="help-screen" class="screen hidden">
+        <h2>Help Screen</h2>
+
+        <h3>Details</h3>
+        <p>
+          AR Quiz Trainer is a browser-based learning tool. It uses a
+          pre-trained AI model (MobileNet) to recognise lab objects from the
+          webcam, and then generates object-specific safety quizzes.
+        </p>
+
+        <h3>Instructions</h3>
+        <p>
+          1. Click <b>Scan Object</b> → <b>Start Camera</b><br />
+          2. Show a lab object or its photo on your phone to the camera<br />
+          3. Click <b>Capture & Detect</b> to let AI identify the object<br />
+          4. Answer quiz questions and submit to view your score<br />
+          5. Use <b>View Answers</b> to see correct/wrong answers with
+          description<br />
+          6. Use <b>Save Question</b> or <b>Save Wrong Questions</b> to store
+          for revision<br />
+          7. Open <b>Library</b> to see favourites and recently scanned objects
+        </p>
+
+        <div class="btn-row">
+          <button id="btn-help-back">Back</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
