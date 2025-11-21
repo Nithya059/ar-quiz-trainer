@@ -146,7 +146,7 @@ Examples:
 ---
 
 ## 🧪 Supported Lab Objects (Examples)
-> *Project works with ANY object provide provide.*
+> *Project works with ANY object users provide.*
 
 Common detections:
 - Beaker  
