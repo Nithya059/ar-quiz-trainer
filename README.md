@@ -196,3 +196,5 @@ No backend is needed.
 5. Your Live URL becomes available  
 
 Example:
+https://nithya059.github.io/Tech-Titans_Sathvik_ar-quiz-trainer/
+
