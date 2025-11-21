@@ -16,7 +16,7 @@ It improves lab learning, safety awareness, and concept visualization through **
 - If detection fails → shows a **“Object not recognized”** message  
 
 ### 🧪 2. Quiz Auto-Generated Based on Object
-Each detected object loads related quiz questions (up to 20).  
+Each detected object loads related quiz questions (up to 5).  
 Examples:  
 - Beaker → Lab safety, measurement  
 - Microscope → Biology, handling procedures  
